@@ -32,12 +32,12 @@ app.post('/webhook', async (req, res) => {
 
       const prioridad = chatCompletion2.choices[0].message.content;
 
-
-    // Actualizar el ticket en TeamDesk
-    // await axios.post('https://tu-api-de-teamdesk.com/updateTicket', {    
-    //   ticket_id,
-    //   categoria
-    // });
+      const data = {
+        Id: ticket_id,
+        priority: prioridad,
+        category: categoria
+      };
+     await axios.post('https://www.teamdesk.net/secure/api/v2/96583/62A5EEF968AA49FC8C1A6E3925C30639/Ticket/upsert.json', data);
 
     res.status(200).json({ message: 'Categoría predicha y ticket actualizado.', categoria,prioridad });
   } catch (error) {
@@ -46,7 +46,7 @@ app.post('/webhook', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3036;
+const PORT = process.env.PORT || 3045;
 app.listen(PORT, () => {
   console.log(`Servicio intermedio escuchando en el puerto ${PORT}`);
 });
