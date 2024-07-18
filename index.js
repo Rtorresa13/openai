@@ -46,7 +46,7 @@ app.post('/webhook', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3039;
+const PORT = process.env.PORT || 3036;
 app.listen(PORT, () => {
   console.log(`Servicio intermedio escuchando en el puerto ${PORT}`);
 });
