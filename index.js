@@ -2,14 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
 const OpenAI =  require('openai');
-
+require('dotenv').config();
 
 const app = express();
 app.use(bodyParser.json());
 
 
 const openai = new OpenAI({
-  apiKey: 'sk-None-zHXAmBCFVBoBUj9LqfvOT3BlbkFJ0wbi8UKk0sNhz4l8WVd4' 
+  apiKey: process.env.OPENAI_API_KEY
 });
 app.post('/webhook', async (req, res) => {
   const { contenido_ticket, ticket_id } = req.body;
